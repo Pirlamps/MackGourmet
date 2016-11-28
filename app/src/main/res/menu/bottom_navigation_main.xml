@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_favorites"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/menu_item_concepts"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_schedules"
+        android:enabled="true"
+        android:icon="@android:drawable/stat_notify_sync"
+        android:title="@string/menu_item_recipes"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_music"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="@string/menu_item_chefs"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_teste"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_call"
+        android:title="@string/menu_item_favorites"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_teste1"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="@string/menu_item_more"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MackGourmet</string>
+
+    <string name="menu_item_concepts">Conceitos</string>
+    <string name="menu_item_recipes">Receitas</string>
+    <string name="menu_item_chefs">Chefs</string>
+    <string name="menu_item_favorites">Favoritos</string>
+    <string name="menu_item_more">Mais</string>
+
+</resources>
