@@ -1,44 +1,78 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
-android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
-    defaultConfig {
-        applicationId "br.com.mack"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        dataBinding {
-            enabled = true
-        }
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
 }
 
-    ext{
+
+
+buildscript {
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+
+    repositories {
+        jcenter()
+        mavenLocal()
+        maven { url 'https://maven.fabric.io/public' }
+
+    }
+
+}
+    android {
+        compileSdkVersion 25
+        buildToolsVersion "25.0.1"
+        defaultConfig {
+            applicationId "br.com.mack"
+            minSdkVersion 16
+            targetSdkVersion 25
+            versionCode 1
+            versionName "1.0"
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+            dataBinding {
+                enabled = true
+            }
+        }
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+        }
+    }
+
+
+
+    ext {
         retrofitVersion = "2.1.0"
         androidSupportVersion = "25.0.1"
-        daggerVersion ="2.8"
+        daggerVersion = "2.8"
     }
+repositories {
+    jcenter()
+    mavenLocal()
+    maven { url 'https://maven.fabric.io/public' }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:'+androidSupportVersion
-    compile 'com.android.support:design:'+androidSupportVersion
-    compile 'com.squareup.retrofit2:retrofit:'+retrofitVersion
-    compile 'com.google.dagger:dagger:'+daggerVersion
-    annotationProcessor "com.google.dagger:dagger-compiler:"+daggerVersion
-
-    //TODO: FAZER O IMPORT DO GOOGLE SERVICES NO PROJETO PARA ADICIONAR O GOOGLE MAPS.
-    testCompile 'junit:junit:4.12'
 }
+
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+        compile "com.android.support:appcompat-v7:$androidSupportVersion"
+        compile "com.android.support:design:$androidSupportVersion"
+        compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+        compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+        compile "com.google.dagger:dagger:$daggerVersion"
+        annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+        provided 'org.glassfish:javax.annotation:10.0-b28'
+
+
+        //TODO: FAZER O IMPORT DO GOOGLE SERVICES NO PROJETO PARA ADICIONAR O GOOGLE MAPS.
+        testCompile 'junit:junit:4.12'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
+        transitive = true;
+    }
+    }
