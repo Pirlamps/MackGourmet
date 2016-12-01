@@ -1,4 +1,4 @@
-package br.com.xds.lixoteste;
+package br.com.mack.activities;
 
 import org.junit.Test;
 

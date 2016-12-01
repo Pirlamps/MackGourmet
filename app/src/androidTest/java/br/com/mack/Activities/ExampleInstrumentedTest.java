@@ -1,4 +1,4 @@
-package br.com.xds.lixoteste;
+package br.com.mack.activities;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
