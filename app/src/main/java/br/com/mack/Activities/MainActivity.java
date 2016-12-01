@@ -1,4 +1,4 @@
-package br.com.xds.lixoteste;
+package br.com.mack.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
