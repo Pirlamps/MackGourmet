@@ -16,6 +16,7 @@ import retrofit2.Response;
 
 public class UsersManager {
 
+//    TODO DELEGATE PARA VOLTAR OS OBJETOS PARA ACTIVITY E DOCUMENTAÇÃO DOS MÉTODOS
 
 
     public void getStudents(){

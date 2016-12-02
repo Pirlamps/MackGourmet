@@ -14,6 +14,8 @@ import retrofit2.Response;
 
 public class RestaurantsManager{
 
+    //    TODO DELEGATE PARA VOLTAR OS OBJETOS PARA ACTIVITY E DOCUMENTAÇÃO DOS MÉTODOS
+
     /**
      *
      */
