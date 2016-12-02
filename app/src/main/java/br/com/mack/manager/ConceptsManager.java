@@ -42,65 +42,10 @@ public class ConceptsManager {
         });
     }
 
-    /**
-     *
-     * @param conceptId
-     */
-    public void getChefsByConcept(String conceptId){
 
-        Call<List<Chef>> restCall = ApiFactory.buildAPI().getChefsByConcept(conceptId);
-        restCall.enqueue(new Callback<List<Chef>>() {
-            @Override
-            public void onResponse(Call<List<Chef>> call, Response<List<Chef>> response) {
-                System.out.println(":D");
-            }
 
-            @Override
-            public void onFailure(Call<List<Chef>> call, Throwable t) {
-                System.out.println(":(");
-            }
-        });
 
-    }
 
-    /**
-     *
-     * @param conceptId
-     */
-    public void getRestaurantsByConcept(String conceptId){
 
-        Call<List<Restaurant>> restCall = ApiFactory.buildAPI().getRestaurantsByConcept(conceptId);
-        restCall.enqueue(new Callback<List<Restaurant>>() {
-            @Override
-            public void onResponse(Call<List<Restaurant>> call, Response<List<Restaurant>> response) {
-                System.out.println(":D");
-            }
-
-            @Override
-            public void onFailure(Call<List<Restaurant>> call, Throwable t) {
-                System.out.println(":(");
-            }
-        });
-    }
-
-    /**
-     *
-     * @param conceptId
-     */
-    public void getRecipesByConcept(String conceptId){
-
-        Call<List<Recipe>> restCall = ApiFactory.buildAPI().getRecipesByConcept(conceptId);
-        restCall.enqueue(new Callback<List<Recipe>>() {
-            @Override
-            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-                System.out.println(":D");
-            }
-
-            @Override
-            public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                System.out.println(":(");
-            }
-        });
-    }
 
 }

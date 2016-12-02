@@ -4,8 +4,10 @@ import java.util.List;
 
 import br.com.mack.valueobjects.Chef;
 import br.com.mack.valueobjects.Concept;
+import br.com.mack.valueobjects.Developer;
 import br.com.mack.valueobjects.Recipe;
 import br.com.mack.valueobjects.Restaurant;
+import br.com.mack.valueobjects.Student;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -38,7 +40,7 @@ public interface MackApiInterfaces {
 
 //    =======RECIPES=======
     @GET("/webservices/recipes/getRecipes")
-    Call<List<Recipe>> getRecipe();
+    Call<List<Recipe>> getRecipes();
 
     @GET("/webservices/recipes/findRecipe")
     Call<Recipe> getRecipeById(
@@ -58,13 +60,13 @@ public interface MackApiInterfaces {
 
 //    ========USERS========
     @GET("/webservices/users/getChefs")
-    Call<List<Restaurant>> getChefs();
+    Call<List<Chef>> getChefs();
 
     @GET("/webservices/users/getStudents")
-    Call<List<Restaurant>> getStudents();
+    Call<List<Student>> getStudents();
 
     @GET("/webservices/users/getDevelopers")
-    Call<List<Restaurant>> getDevelopers();
+    Call<List<Developer>> getDevelopers();
 //    =====================
 
 
