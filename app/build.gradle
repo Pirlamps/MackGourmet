@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+apply plugin: 'com.neenbedankt.android-apt'
+
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -10,6 +12,8 @@ repositories {
 buildscript {
     dependencies {
         classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+
     }
 
     repositories {
@@ -49,6 +53,7 @@ buildscript {
         androidSupportVersion = "25.0.1"
         daggerVersion = "2.8"
     }
+
 repositories {
     jcenter()
     mavenLocal()
@@ -63,11 +68,31 @@ repositories {
         })
         compile "com.android.support:appcompat-v7:$androidSupportVersion"
         compile "com.android.support:design:$androidSupportVersion"
-        compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-        compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-        compile "com.google.dagger:dagger:$daggerVersion"
-        annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
         provided 'org.glassfish:javax.annotation:10.0-b28'
+
+
+        //Retrofit
+        compile 'com.squareup.retrofit2:retrofit:2.0.2'
+
+
+        //OkHttp
+        compile 'com.squareup.okhttp3:okhttp:3.2.0'
+        compile 'com.squareup.okio:okio:1.7.0'
+
+        //Gson
+        compile 'com.google.code.gson:gson:2.6.2'
+        compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+
+        //RxJava
+        compile 'io.reactivex:rxjava:1.1.2'
+        compile 'io.reactivex:rxandroid:1.1.0'
+        compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
+
+        //Dagger
+        apt 'com.google.dagger:dagger-compiler:2.2'
+        compile 'com.google.dagger:dagger:2.2'
+        provided 'javax.annotation:jsr250-api:1.0'
 
 
         //TODO: FAZER O IMPORT DO GOOGLE SERVICES NO PROJETO PARA ADICIONAR O GOOGLE MAPS.

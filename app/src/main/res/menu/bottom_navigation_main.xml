@@ -2,31 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/action_concepts"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/menu_item_concepts"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_schedules"
+        android:id="@+id/action_recipes"
         android:enabled="true"
         android:icon="@android:drawable/stat_notify_sync"
         android:title="@string/menu_item_recipes"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_music"
+        android:id="@+id/action_chefs"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="@string/menu_item_chefs"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_teste"
+        android:id="@+id/action_favorites"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_call"
         android:title="@string/menu_item_favorites"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_teste1"
+        android:id="@+id/action_more"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_compass"
         android:title="@string/menu_item_more"

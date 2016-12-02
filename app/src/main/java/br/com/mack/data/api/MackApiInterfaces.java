@@ -1,4 +1,4 @@
-package br.com.mack.api;
+package br.com.mack.data.api;
 
 import java.util.List;
 

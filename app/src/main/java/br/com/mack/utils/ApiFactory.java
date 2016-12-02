@@ -1,6 +1,7 @@
 package br.com.mack.utils;
 
-import br.com.mack.api.MackApiInterfaces;
+
+import br.com.mack.data.api.MackApiInterfaces;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

@@ -1,4 +1,4 @@
-package br.com.mack.manager;
+package br.com.mack.data.manager;
 
 import java.util.List;
 

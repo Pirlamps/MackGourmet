@@ -1,19 +1,12 @@
-package br.com.mack.manager;
+package br.com.mack.data.manager;
 
 import java.util.List;
 
-import br.com.mack.api.MackApiInterfaces;
 import br.com.mack.utils.ApiFactory;
-import br.com.mack.utils.AppParameters;
-import br.com.mack.valueobjects.Chef;
 import br.com.mack.valueobjects.Concept;
-import br.com.mack.valueobjects.Recipe;
-import br.com.mack.valueobjects.Restaurant;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by matheus on 01/12/16.
