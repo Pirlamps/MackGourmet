@@ -12,9 +12,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import br.com.mack.R;
+import br.com.mack.concepts.ConceptFragment;
 import br.com.mack.databinding.ActivityMainBinding;
 import br.com.mack.chefs.FragmentChefs;
-import br.com.mack.concepts.FragmentConcepts;
+import br.com.mack.recipes.RecipeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = null;
         switch(item.getItemId()){
             case R.id.action_concepts:
-                fragment = new FragmentConcepts();
+                fragment = new ConceptFragment();
                 break;
             case R.id.action_recipes:
-
+                fragment = new RecipeFragment();
                 break;
             case R.id.action_chefs:
                 fragment = new FragmentChefs();

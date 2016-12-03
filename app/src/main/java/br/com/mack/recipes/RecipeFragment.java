@@ -1,15 +1,15 @@
-package br.com.mack.concepts;
-
+package br.com.mack.recipes;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.view.animation.Animation;
 import android.widget.Toast;
+
+import br.com.mack.BR;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,30 +17,30 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.mack.App;
-import br.com.mack.BR;
 import br.com.mack.R;
-import br.com.mack.databinding.FragmentConceptsBinding;
+import br.com.mack.databinding.FragmentRecipesBinding;
 import br.com.mack.joat.JoatAdapter;
 import br.com.mack.joat.JoatObject;
-import br.com.mack.valueobjects.Concept;
+import br.com.mack.valueobjects.Recipe;
 
 /**
- * Created by Amor on 02/12/2016.
+ * Created by Amor on 03/12/2016.
  */
 
-public class FragmentConcepts extends Fragment implements ConceptContract.View {
+public class RecipeFragment extends Fragment implements RecipeContract.View{
+
     JoatAdapter adapter;
-    FragmentConceptsBinding binding;
+    FragmentRecipesBinding binding;
 
     @Inject
-    ConceptPresenter conceptPresenter;
+    RecipePresenter recipePresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DaggerConceptComponent.builder()
+        DaggerRecipeComponent.builder()
                 .netComponent(((App)getActivity().getApplicationContext()).getmNetComponent())
-                .conceptModule(new ConceptModule(this))
+                .recipeModule(new RecipeModule(this))
                 .build().inject(this);
         adapter = new JoatAdapter(getContext());
     }
@@ -48,25 +48,21 @@ public class FragmentConcepts extends Fragment implements ConceptContract.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentConceptsBinding.inflate(inflater,container,false);
+        binding = FragmentRecipesBinding.inflate(inflater,container,false);
+        recipePresenter.loadRecipes();
         return binding.getRoot();
 
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        conceptPresenter.loadConcepts();
-    }
-
-    @Override
-    public void showConcepts(List<Concept> concepts) {
-        List<JoatObject> joatList = new ArrayList<>();
-        for (Concept item: concepts) {
-            joatList.add(new JoatObject(R.layout.row_concept,BR.concept,item,null));
+    public void showRecipes(List<Recipe> recipes) {
+        List<JoatObject>joatList = new ArrayList<>();
+        for(Recipe item:recipes){
+            joatList.add(new JoatObject(R.layout.row_recipe,BR.recipe,item,null));
         }
         adapter.setData(joatList);
-        binding.conceptsList.setAdapter(adapter);
+        binding.recipesList.setAdapter(adapter);
+        binding.recipesList.setDividerHeight(10);
     }
 
     @Override

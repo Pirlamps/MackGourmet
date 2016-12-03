@@ -1,17 +1,17 @@
-package br.com.mack.concepts;
+package br.com.mack.recipes;
 
 import java.util.List;
 
-import br.com.mack.valueobjects.Concept;
+import br.com.mack.valueobjects.Recipe;
 
 /**
  * Created by Amor on 03/12/2016.
  */
 
-interface ConceptContract {
+interface RecipeContract {
 
     interface View{
-        void showConcepts(List<Concept> concepts);
+        void showRecipes(List<Recipe> recipes);
 
         void showError(String message);
 
@@ -19,6 +19,6 @@ interface ConceptContract {
     }
 
     interface Presenter{
-        void loadConcepts();
+        void loadRecipes();
     }
 }

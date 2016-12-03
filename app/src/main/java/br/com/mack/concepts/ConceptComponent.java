@@ -9,6 +9,6 @@ import dagger.Component;
  */
 @CustomScope
 @Component(dependencies = NetComponent.class, modules = ConceptModule.class)
-public interface ConceptComponent {
-    void inject(FragmentConcepts fragment);
+interface ConceptComponent {
+    void inject(ConceptFragment fragment);
 }
