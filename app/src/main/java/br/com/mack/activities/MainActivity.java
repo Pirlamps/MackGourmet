@@ -11,14 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.crashlytics.android.Crashlytics;
-
 import br.com.mack.R;
-import br.com.mack.data.manager.ConceptsManager;
 import br.com.mack.databinding.ActivityMainBinding;
-import br.com.mack.fragments.FragmentChefs;
-import br.com.mack.fragments.FragmentConcepts;
-import io.fabric.sdk.android.Fabric;
+import br.com.mack.chefs.FragmentChefs;
+import br.com.mack.concepts.FragmentConcepts;
 
 public class MainActivity extends AppCompatActivity {
 

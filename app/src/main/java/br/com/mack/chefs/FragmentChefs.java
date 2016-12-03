@@ -1,4 +1,4 @@
-package br.com.mack.fragments;
+package br.com.mack.chefs;
 
 
 import android.os.Bundle;

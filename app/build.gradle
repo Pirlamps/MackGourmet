@@ -94,6 +94,8 @@ repositories {
         compile 'com.google.dagger:dagger:2.2'
         provided 'javax.annotation:jsr250-api:1.0'
 
+        //Picasso
+        compile 'com.squareup.picasso:picasso:2.5.2'
 
         //TODO: FAZER O IMPORT DO GOOGLE SERVICES NO PROJETO PARA ADICIONAR O GOOGLE MAPS.
         testCompile 'junit:junit:4.12'
