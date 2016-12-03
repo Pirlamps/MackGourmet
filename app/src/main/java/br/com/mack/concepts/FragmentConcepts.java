@@ -17,8 +17,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.mack.App;
+import br.com.mack.BR;
 import br.com.mack.R;
 import br.com.mack.databinding.FragmentConceptsBinding;
+import br.com.mack.joat.JoatAdapter;
+import br.com.mack.joat.JoatObject;
 import br.com.mack.valueobjects.Concept;
 
 /**
@@ -26,7 +29,7 @@ import br.com.mack.valueobjects.Concept;
  */
 
 public class FragmentConcepts extends Fragment implements ConceptContract.View {
-    ArrayAdapter<String> adapter;
+    JoatAdapter adapter;
     FragmentConceptsBinding binding;
 
     @Inject
@@ -39,6 +42,7 @@ public class FragmentConcepts extends Fragment implements ConceptContract.View {
                 .netComponent(((App)getActivity().getApplicationContext()).getmNetComponent())
                 .conceptModule(new ConceptModule(this))
                 .build().inject(this);
+        adapter = new JoatAdapter(getContext());
     }
 
     @Nullable
@@ -57,11 +61,11 @@ public class FragmentConcepts extends Fragment implements ConceptContract.View {
 
     @Override
     public void showConcepts(List<Concept> concepts) {
-        List<String> teste = new ArrayList<>();
+        List<JoatObject> joatList = new ArrayList<>();
         for (Concept item: concepts) {
-            teste.add(item.getName());
+            joatList.add(new JoatObject(R.layout.row_concept,BR.concept,item,null));
         }
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, teste);
+        adapter.setData(joatList);
         binding.conceptsList.setAdapter(adapter);
     }
 
