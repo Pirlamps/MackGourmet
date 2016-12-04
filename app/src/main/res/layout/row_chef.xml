@@ -1,17 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="chef"
             type="br.com.mack.valueobjects.Chef"/>
     </data>
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:background="@drawable/row_border"
+    android:layout_height="180dp">
 
 
+    <ImageView
+        app:srcCompat="@drawable/chef_loading_img"
+        android:id="@+id/chef_img"
+        app:imageUrl="@{chef.picture}"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
 
+    <TextView
+        android:text="@{chef.name}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chef_name"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/chef_img"
+        app:layout_constraintTop_toTopOf="@+id/chef_img"
+        app:layout_constraintVertical_bias="0.45"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/chef_img"
+        android:layout_marginLeft="8dp" />
+
+    <TextView
+        android:text="@{chef.concept.name}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chef_concept"
+        android:textColor="@android:color/white"
+        app:layout_constraintRight_toRightOf="@+id/chef_name"
+        app:layout_constraintLeft_toLeftOf="@+id/chef_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/chef_name" />
 </android.support.constraint.ConstraintLayout>
 </layout>

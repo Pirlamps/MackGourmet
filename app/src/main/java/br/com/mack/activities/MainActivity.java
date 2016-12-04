@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import br.com.mack.R;
 import br.com.mack.concepts.ConceptFragment;
 import br.com.mack.databinding.ActivityMainBinding;
-import br.com.mack.chefs.FragmentChefs;
+import br.com.mack.chefs.ChefFragment;
 import br.com.mack.recipes.RecipeFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new RecipeFragment();
                 break;
             case R.id.action_chefs:
-                fragment = new FragmentChefs();
+                fragment = new ChefFragment();
                 break;
             case R.id.action_favorites:
 
