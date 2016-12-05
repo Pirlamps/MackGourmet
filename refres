@@ -1,0 +1,19 @@
+public void initRefreshMediaPlan(){
+        binding.outletMediaPlanSwipeToRefresh.setColorSchemeResources(R.color.colorAccent,R.color.colorPrimary);
+
+        binding.outletMediaPlanSwipeToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                binding.outletMediaPlanSwipeToRefresh.setRefreshing(true);
+                component.moohManager().getMediaPlaningLazy(MediaPlanActivity.this);
+
+                ( new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.outletMediaPlanSwipeToRefresh.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
+    }
