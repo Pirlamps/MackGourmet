@@ -6,5 +6,6 @@
     <string name="menu_item_chefs">Chefs</string>
     <string name="menu_item_favorites">Favoritos</string>
     <string name="menu_item_more">Mais</string>
+    <string name="chef_info_description">chef info</string>
 
 </resources>

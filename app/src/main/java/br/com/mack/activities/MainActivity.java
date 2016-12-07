@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         currentFragment = new ConceptFragment();
+
         ft.replace(R.id.mainFragment, currentFragment).commit();
         binding.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -7,6 +7,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -63,8 +65,10 @@ public class ChefPresenter implements ChefContract.Presenter{
 
                     @Override
                     public void onNext(List<Chef> chefs) {
+                        Collections.sort(chefs, new chefComparator());
                         String json = gson.toJson(chefs);
                         preferences.edit().putString("Chefs",json).apply();
+
                         mView.showChefs(chefs);
 
                     }
@@ -89,11 +93,20 @@ public class ChefPresenter implements ChefContract.Presenter{
 
                     @Override
                     public void onNext(List<Chef> chefs) {
+                        Collections.sort(chefs, new chefComparator());
                         String json = gson.toJson(chefs);
                         preferences.edit().putString("Chefs",json).apply();;
                         mView.showChefs(chefs);
 
                     }
                 });
+    }
+
+    private class chefComparator implements Comparator<Chef>{
+
+        @Override
+        public int compare(Chef chef, Chef t1) {
+            return chef.getName().compareTo(t1.getName());
+        }
     }
 }

@@ -1,13 +1,16 @@
 package br.com.mack.chefs;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ import br.com.mack.valueobjects.Chef;
  * Created by Amor on 02/12/2016.
  */
 
-public class ChefFragment extends Fragment implements ChefContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class ChefFragment extends Fragment implements ChefContract.View, SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
 
     JoatAdapter adapter;
     FragmentChefsBinding binding;
@@ -49,6 +52,7 @@ public class ChefFragment extends Fragment implements ChefContract.View, SwipeRe
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentChefsBinding.inflate(inflater,container,false);
+        binding.chefsList.setOnItemClickListener(this);
         binding.listRefresh.setOnRefreshListener(this);
         chefPresenter.loadChefs();
         return binding.getRoot();
@@ -80,5 +84,21 @@ public class ChefFragment extends Fragment implements ChefContract.View, SwipeRe
     @Override
     public void onRefresh() {
         chefPresenter.refreshChefs();
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        Chef chef = (Chef)((JoatObject)adapter.getItem(position)).getBindingObject();
+        new AlertDialog.Builder(getContext())
+                .setTitle(chef.getName())
+                .setMessage(chef.getAbout())
+                .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
     }
 }
