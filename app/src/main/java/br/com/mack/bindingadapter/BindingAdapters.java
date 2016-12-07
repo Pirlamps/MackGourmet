@@ -13,6 +13,33 @@ import br.com.mack.R;
 
 public class BindingAdapters {
 
+    @BindingAdapter({"bind:imageRecipe"})
+    public static void loadRecipeImage(ImageView view, String imageUrl) {
+        Picasso.with(view.getContext())
+                .load(imageUrl)
+                .placeholder(R.drawable.recipe_loading_img)
+                .fit()
+                .into(view);
+    }
+
+    @BindingAdapter({"bind:imageChef"})
+    public static void loadChefImage(ImageView view, String imageUrl) {
+        Picasso.with(view.getContext())
+                .load(imageUrl)
+                .placeholder(R.drawable.chef_loading_img)
+                .fit()
+                .into(view);
+    }
+
+    @BindingAdapter({"bind:imageRestaurant"})
+    public static void loadRestaurantImage(ImageView view, String imageUrl) {
+        Picasso.with(view.getContext())
+                .load(imageUrl)
+                .placeholder(R.drawable.placeholder_restaurant_img)
+                .fit()
+                .into(view);
+    }
+
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
         Picasso.with(view.getContext())

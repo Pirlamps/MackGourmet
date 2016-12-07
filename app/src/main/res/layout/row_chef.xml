@@ -18,7 +18,7 @@
     <ImageView
         app:srcCompat="@drawable/chef_loading_img"
         android:id="@+id/chef_img"
-        app:imageUrl="@{chef.picture}"
+        app:imageChef="@{chef.picture}"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"

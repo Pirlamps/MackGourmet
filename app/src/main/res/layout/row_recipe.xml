@@ -16,7 +16,7 @@
     <ImageView
         android:layout_width="75dp"
         android:src="@drawable/food_loading_img"
-        app:imageUrl="@{recipe.picture}"
+        app:imageRecipe="@{recipe.picture}"
         android:id="@+id/recipe_img"
         android:layout_height="75dp"
         android:layout_marginStart="16dp"

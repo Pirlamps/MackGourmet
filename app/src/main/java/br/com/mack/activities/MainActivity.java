@@ -19,12 +19,18 @@ import br.com.mack.recipes.RecipeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Fragment currentFragment = null;
+    private FragmentManager fm;
+    private FragmentTransaction ft;
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
-
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        currentFragment = new ConceptFragment();
+        ft.replace(R.id.mainFragment, currentFragment).commit();
         binding.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -36,18 +42,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean replaceFragment(MenuItem item){
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        Fragment fragment = null;
         switch(item.getItemId()){
             case R.id.action_concepts:
-                fragment = new ConceptFragment();
+                this.currentFragment = new ConceptFragment();
                 break;
             case R.id.action_recipes:
-                fragment = new RecipeFragment();
+                this.currentFragment = new RecipeFragment();
                 break;
             case R.id.action_chefs:
-                fragment = new ChefFragment();
+                this.currentFragment = new ChefFragment();
                 break;
             case R.id.action_favorites:
 
@@ -57,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
-        ft.replace(R.id.mainFragment, fragment);
-        ft.commit();
+        ft = fm.beginTransaction();
+        ft.replace(R.id.mainFragment, currentFragment).commit();
         return true;
     }
 }
