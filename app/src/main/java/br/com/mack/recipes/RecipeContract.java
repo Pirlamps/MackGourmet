@@ -20,5 +20,6 @@ interface RecipeContract {
 
     interface Presenter{
         void loadRecipes();
+        void refreshRecipes();
     }
 }

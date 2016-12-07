@@ -1,8 +1,11 @@
 package br.com.mack.recipes;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +30,7 @@ import br.com.mack.valueobjects.Recipe;
  * Created by Amor on 03/12/2016.
  */
 
-public class RecipeFragment extends Fragment implements RecipeContract.View{
+public class RecipeFragment extends Fragment implements RecipeContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     JoatAdapter adapter;
     FragmentRecipesBinding binding;
@@ -49,6 +52,7 @@ public class RecipeFragment extends Fragment implements RecipeContract.View{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentRecipesBinding.inflate(inflater,container,false);
+        binding.listRefresh.setOnRefreshListener(this);
         recipePresenter.loadRecipes();
         return binding.getRoot();
 
@@ -63,15 +67,24 @@ public class RecipeFragment extends Fragment implements RecipeContract.View{
         adapter.setData(joatList);
         binding.recipesList.setAdapter(adapter);
         binding.recipesList.setDividerHeight(10);
+
     }
 
     @Override
     public void showError(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        binding.listRefresh.setRefreshing(false);
     }
 
     @Override
     public void showComplete() {
         Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
+        binding.listRefresh.setRefreshing(false);
+    }
+
+    @Override
+    public void onRefresh() {
+        recipePresenter.refreshRecipes();
+
     }
 }

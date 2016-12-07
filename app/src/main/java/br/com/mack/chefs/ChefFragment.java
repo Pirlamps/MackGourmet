@@ -4,6 +4,7 @@ package br.com.mack.chefs;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ import br.com.mack.valueobjects.Chef;
  * Created by Amor on 02/12/2016.
  */
 
-public class ChefFragment extends Fragment implements ChefContract.View{
+public class ChefFragment extends Fragment implements ChefContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     JoatAdapter adapter;
     FragmentChefsBinding binding;
@@ -48,6 +49,7 @@ public class ChefFragment extends Fragment implements ChefContract.View{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentChefsBinding.inflate(inflater,container,false);
+        binding.listRefresh.setOnRefreshListener(this);
         chefPresenter.loadChefs();
         return binding.getRoot();
 
@@ -66,10 +68,17 @@ public class ChefFragment extends Fragment implements ChefContract.View{
     @Override
     public void showError(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        binding.listRefresh.setRefreshing(false);
     }
 
     @Override
     public void showComplete() {
         Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
+        binding.listRefresh.setRefreshing(false);
+    }
+
+    @Override
+    public void onRefresh() {
+        chefPresenter.refreshChefs();
     }
 }

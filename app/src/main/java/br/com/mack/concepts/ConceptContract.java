@@ -20,5 +20,6 @@ interface ConceptContract {
 
     interface Presenter{
         void loadConcepts();
+        void refreshConcepts();
     }
 }

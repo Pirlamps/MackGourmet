@@ -5,10 +5,14 @@
     android:background="@drawable/background_img"
     android:layout_height="match_parent">
 
-
-    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/chefs_list"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/listRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/chefs_list"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
 </layout>

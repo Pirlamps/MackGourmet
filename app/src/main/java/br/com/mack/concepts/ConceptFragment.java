@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ import br.com.mack.valueobjects.Concept;
  * Created by Amor on 02/12/2016.
  */
 
-public class ConceptFragment extends Fragment implements ConceptContract.View {
+public class ConceptFragment extends Fragment implements ConceptContract.View, SwipeRefreshLayout.OnRefreshListener {
     JoatAdapter adapter;
     FragmentConceptsBinding binding;
 
@@ -49,6 +50,7 @@ public class ConceptFragment extends Fragment implements ConceptContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentConceptsBinding.inflate(inflater,container,false);
+        binding.listRefresh.setOnRefreshListener(this);
         conceptPresenter.loadConcepts();
         return binding.getRoot();
 
@@ -72,10 +74,17 @@ public class ConceptFragment extends Fragment implements ConceptContract.View {
     @Override
     public void showError(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        binding.listRefresh.setRefreshing(false);
     }
 
     @Override
     public void showComplete() {
         Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
+        binding.listRefresh.setRefreshing(false);
+    }
+
+    @Override
+    public void onRefresh() {
+        conceptPresenter.refreshConcepts();
     }
 }

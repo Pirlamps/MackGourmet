@@ -1,5 +1,12 @@
 package br.com.mack.chefs;
 
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,15 +26,27 @@ public class ChefPresenter implements ChefContract.Presenter{
 
     private Retrofit retrofit;
     private ChefContract.View mView;
+    private SharedPreferences preferences;
+    private Gson gson;
 
     @Inject
-    public ChefPresenter(Retrofit retrofit, ChefContract.View mView){
+    public ChefPresenter(Retrofit retrofit, ChefContract.View mView,SharedPreferences preferences){
         this.retrofit = retrofit;
         this.mView = mView;
+        this.preferences = preferences;
+        this.gson = new Gson();
+
     }
 
     @Override
     public void loadChefs() {
+        if(preferences.contains("Chefs")){
+            String json = preferences.getString("Chefs","");
+            Type listType = new TypeToken<ArrayList<Chef>>(){}.getType();
+            List<Chef> chefs = gson.fromJson(json, listType);
+
+            mView.showChefs(chefs);
+        }else
         retrofit.create(MackApiInterfaces.class).getChefs().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
@@ -44,6 +63,34 @@ public class ChefPresenter implements ChefContract.Presenter{
 
                     @Override
                     public void onNext(List<Chef> chefs) {
+                        String json = gson.toJson(chefs);
+                        preferences.edit().putString("Chefs",json).apply();
+                        mView.showChefs(chefs);
+
+                    }
+                });
+    }
+
+    @Override
+    public void refreshChefs() {
+        retrofit.create(MackApiInterfaces.class).getChefs().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io())
+                .subscribe(new Observer<List<Chef>>() {
+                    @Override
+                    public void onCompleted() {
+                        mView.showComplete();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.showError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(List<Chef> chefs) {
+                        String json = gson.toJson(chefs);
+                        preferences.edit().putString("Chefs",json).apply();;
                         mView.showChefs(chefs);
 
                     }

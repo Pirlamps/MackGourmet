@@ -1,5 +1,7 @@
 package br.com.mack.data.component;
 
+import android.content.SharedPreferences;
+
 import javax.inject.Singleton;
 
 import br.com.mack.data.module.AppModule;
@@ -15,4 +17,5 @@ import retrofit2.Retrofit;
 @Component(modules = {AppModule.class, NetModule.class})
 public interface NetComponent {
     Retrofit retrofit();
+    SharedPreferences sharedPreferences();
 }

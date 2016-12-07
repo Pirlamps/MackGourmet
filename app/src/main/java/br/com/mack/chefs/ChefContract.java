@@ -20,5 +20,6 @@ interface ChefContract {
 
     interface Presenter{
         void loadChefs();
+        void refreshChefs();
     }
 }
