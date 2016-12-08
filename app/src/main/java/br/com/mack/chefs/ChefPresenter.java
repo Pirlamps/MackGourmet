@@ -65,7 +65,7 @@ public class ChefPresenter implements ChefContract.Presenter{
 
                     @Override
                     public void onNext(List<Chef> chefs) {
-                        Collections.sort(chefs, new chefComparator());
+                        Collections.sort(chefs, new ChefComparator());
                         String json = gson.toJson(chefs);
                         preferences.edit().putString("Chefs",json).apply();
 
@@ -93,7 +93,7 @@ public class ChefPresenter implements ChefContract.Presenter{
 
                     @Override
                     public void onNext(List<Chef> chefs) {
-                        Collections.sort(chefs, new chefComparator());
+                        Collections.sort(chefs, new ChefComparator());
                         String json = gson.toJson(chefs);
                         preferences.edit().putString("Chefs",json).apply();;
                         mView.showChefs(chefs);
@@ -102,7 +102,7 @@ public class ChefPresenter implements ChefContract.Presenter{
                 });
     }
 
-    private class chefComparator implements Comparator<Chef>{
+    private class ChefComparator implements Comparator<Chef>{
 
         @Override
         public int compare(Chef chef, Chef t1) {
