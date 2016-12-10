@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Fragment currentFragment = null;
     private FragmentManager fm;
-    private FragmentTransaction ft;
+        private FragmentTransaction ft;
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,5 +64,9 @@ public class MainActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         ft.replace(R.id.mainFragment, currentFragment).commit();
         return true;
+    }
+
+    public void replaceFragment(){
+
     }
 }
