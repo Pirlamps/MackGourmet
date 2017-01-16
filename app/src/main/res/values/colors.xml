@@ -3,4 +3,5 @@
     <color name="colorPrimary">#CA2D46</color>
     <color name="colorPrimaryDark">#CA2D46</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="recipeRow">#6d6f72</color>
 </resources>
